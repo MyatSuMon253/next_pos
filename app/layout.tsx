@@ -1,12 +1,11 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Inter } from "next/font/google";
+import { Provider } from "react-redux";
+import { store } from "./_features/_users/store";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Pico ERP",
-};
 
 export default function RootLayout({
   children,
@@ -15,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Provider store={store}>{children}</Provider>
+      </body>
     </html>
   );
 }
