@@ -1,7 +1,9 @@
+import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { columns } from "./columns";
+import Link from "next/link";
 
 const UserListPage = () => {
   const users = useSelector((state) => state.users);
@@ -28,10 +30,10 @@ const UserListPage = () => {
         <div className="flex items-center justify-between space-y-2">
           <div>
             <h2 className="text-2xl font-bold tracking-tight">Welcome back!</h2>
-            <p className="text-muted-foreground">
-              Here&apos;s a list of your tasks for this month!
-            </p>
           </div>
+        </div>
+        <div>
+          <Link href="/users/create"><Button>Create User</Button></Link>
         </div>
         <DataTable columns={columns} data={users} />
       </div>
