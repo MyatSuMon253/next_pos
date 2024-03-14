@@ -29,10 +29,25 @@ const userSlice = createSlice({
   initialState: userList,
   reducers: {
     addUser: (state, action) => {
-      console.log(action)
-    }
+      state.push(action.payload);
+    },
+    editUser: (state, action) => {
+      const { id, name, email } = action.payload;
+      const updatedUser = state.find((u) => u.id == id);
+      if (updatedUser) {
+        updatedUser.name = name;
+        updatedUser.email = email;
+      }
+    },
+    deleteUser: (state, action) => {
+      const { id } = action.payload;
+      const deletedUser = state.find((u) => u.id == id);
+      if (deletedUser) {
+        return state.filter((u) => u.id !== id);
+      }
+    },
   },
 });
 
-export const {addUser} = userSlice.actions
-export default userSlice.reducer
+export const { addUser, editUser, deleteUser } = userSlice.actions;
+export default userSlice.reducer;
