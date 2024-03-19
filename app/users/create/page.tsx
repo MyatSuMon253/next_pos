@@ -20,7 +20,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -65,6 +67,9 @@ const userFormSchema = z.object({
 });
 
 const CreateUser = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  
   const form = useForm<UserFormValues>({
     resolver: zodResolver(userFormSchema),
     defaultValues: {
@@ -165,7 +170,6 @@ const CreateUser = () => {
               <FormDescription>
                 Select the permissions for user.
               </FormDescription>
-
               <FormMessage />
             </FormItem>
           )}
