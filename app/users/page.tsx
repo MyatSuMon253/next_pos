@@ -1,3 +1,5 @@
+'use client';
+
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
 import Image from "next/image";
@@ -6,7 +8,7 @@ import { columns } from "./columns";
 import Link from "next/link";
 
 const UserListPage = () => {
-  const users = useSelector((state) => state.users);
+  const users = useSelector((state: any) => state.users);
 
   return (
     <>

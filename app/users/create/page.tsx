@@ -1,5 +1,6 @@
 "use client";
 
+import { addUser } from "@/app/_features/_users/userReducer";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -22,7 +23,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
 import { z } from "zod";
 
@@ -69,7 +70,8 @@ const userFormSchema = z.object({
 const CreateUser = () => {
   const router = useRouter();
   const dispatch = useDispatch();
-  
+  const users = useSelector((state: any) => state.users);
+
   const form = useForm<UserFormValues>({
     resolver: zodResolver(userFormSchema),
     defaultValues: {
@@ -82,8 +84,9 @@ const CreateUser = () => {
   });
 
   function onSubmit(data: UserFormValues) {
-    console.log(data);
-    toast("form submitted");
+    dispatch(addUser({ ...data, id: users.length }));
+    toast("user added successfully");
+    router.push("/users");
   }
 
   return (
