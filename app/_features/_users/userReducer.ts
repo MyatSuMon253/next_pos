@@ -1,3 +1,4 @@
+import { permissions } from "./../../users/create/page";
 import { createSlice } from "@reduxjs/toolkit";
 
 const userList = [
@@ -32,12 +33,15 @@ const userSlice = createSlice({
       state.push(action.payload);
     },
     editUser: (state, action) => {
-      const { id, name, email } = action.payload;
-      const updatedUser = state.find((u) => u.id == id);
+      const { id, name, email, role, permissions } = action.payload;
+      const updatedUser = state.find((u) => u.id === Number(id));
       if (updatedUser) {
         updatedUser.name = name;
         updatedUser.email = email;
+        updatedUser.role = role;
+        updatedUser.permissions = permissions;
       }
+      return state;
     },
     deleteUser: (state, action) => {
       const { id } = action.payload;

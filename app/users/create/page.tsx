@@ -34,26 +34,26 @@ export interface UserFormValues {
   permissions: string[];
 }
 
-const permissions = [
+export const permissions = [
   {
     label: "READ",
-    value: "read",
+    value: "Read",
   },
   {
     label: "WRITE",
-    value: "write",
+    value: "Write",
   },
   {
     label: "UPDATE",
-    value: "update",
+    value: "Update",
   },
   {
     label: "DELETE",
-    value: "delete",
+    value: "Delete",
   },
 ];
 
-const userFormSchema = z.object({
+export const userFormSchema = z.object({
   name: z
     .string()
     .min(2, {
@@ -138,9 +138,9 @@ const CreateUser = () => {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="admin">Admin</SelectItem>
-                  <SelectItem value="manager">Manager</SelectItem>
-                  <SelectItem value="user">User</SelectItem>
+                  <SelectItem value="Admin">Admin</SelectItem>
+                  <SelectItem value="Manager">Manager</SelectItem>
+                  <SelectItem value="User">User</SelectItem>
                 </SelectContent>
               </Select>
               <FormDescription>Select a role</FormDescription>

@@ -1,3 +1,6 @@
+"use client";
+
+import TableRowActions from "@/components/ui/table-row-actions";
 import { ColumnDef } from "@tanstack/react-table";
 import Link from "next/link";
 
@@ -33,12 +36,13 @@ export const columns: ColumnDef<User>[] = [
   {
     accessorKey: "actions",
     header: "Actions",
-    cell: (row) => (
-      <div>
-        <Link href={`/users/${row.getValue("id")}/edit`} className="underline">
-          Edit
-        </Link>
-      </div>
+    cell: (row: any) => (
+      <TableRowActions
+        row={row}
+        renderMenuItems={(r: any) => {
+          return <Link href={`/users/${r.row.id}/edit`}>Edit User</Link>;
+        }}
+      />
     ),
   },
 ];
